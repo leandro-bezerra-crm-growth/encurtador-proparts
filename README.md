@@ -10,6 +10,8 @@ Stack: Next.js 16 (Vercel) + Supabase (Postgres).
 - Agrupa links por campanha, com busca e filtro
 - Ativa, desativa, edita e exclui links
 - Conta cliques por dia, país, dispositivo e site de origem (últimos 30 dias)
+- Relatório por campanha (7, 30 ou 90 dias) com ranking de links e exportação CSV para Excel
+- Repassa fbclid, gclid e parâmetros de anúncio para o destino
 - Ignora robôs e pré-visualizações (WhatsApp, redes sociais) na contagem
 - Não guarda IP nem dados pessoais (LGPD)
 
@@ -27,6 +29,7 @@ Os links curtos (`/codigo`) são públicos: qualquer pessoa com o link é redire
 
 1. Crie um projeto em [supabase.com](https://supabase.com) (região sugerida: São Paulo, `sa-east-1`).
 2. Abra **SQL Editor**, cole todo o conteúdo de [`supabase/schema.sql`](supabase/schema.sql) e clique em **Run**.
+   Depois rode, em ordem, cada arquivo da pasta [`supabase/migrations`](supabase/migrations).
 3. Em **Project Settings > API**, copie:
    - **Project URL** → vai em `SUPABASE_URL`
    - **service_role / secret key** → vai em `SUPABASE_SERVICE_ROLE_KEY`
@@ -90,5 +93,4 @@ Abra http://localhost:3000.
 
 - QR code para cada link (download PNG/SVG)
 - Links de revendas (agrupamento por revenda)
-- Relatório consolidado por campanha e exportação CSV
 - Data de expiração e agendamento de links

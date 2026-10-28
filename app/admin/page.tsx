@@ -88,7 +88,13 @@ export default async function AdminPage({ searchParams }: PageProps<"/admin">) {
                       <td className="truncate" title={link.url}>
                         {link.url}
                       </td>
-                      <td>{link.campaign ?? <span className="muted">—</span>}</td>
+                      <td>
+                        {link.campaign ? (
+                          <NextLink href={`/admin/campanhas/${encodeURIComponent(link.campaign)}`}>{link.campaign}</NextLink>
+                        ) : (
+                          <span className="muted">—</span>
+                        )}
+                      </td>
                       <td className="num">{formatNumber(Number(link.clicks))}</td>
                       <td>{formatDate(link.created_at)}</td>
                       <td className="actions">

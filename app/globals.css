@@ -72,6 +72,41 @@ code {
   font-size: 16px;
 }
 
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.nav a:not(.brand) {
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.nav a:not(.brand):hover {
+  color: var(--text);
+}
+
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.kpis > div {
+  display: grid;
+  gap: 4px;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.kpis strong {
+  font-size: 22px;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
