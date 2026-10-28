@@ -59,6 +59,6 @@ export async function GET(request: NextRequest, ctx: RouteContext<"/[slug]">) {
   // 302 (temporário) para que mudanças de destino passem a valer na hora
   return new Response(null, {
     status: 302,
-    headers: { location: buildDestination(link), "cache-control": "no-store" },
+    headers: { location: buildDestination(link, request.nextUrl.searchParams), "cache-control": "no-store" },
   });
 }

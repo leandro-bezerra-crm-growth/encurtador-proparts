@@ -47,13 +47,21 @@ export function validateUrl(url: string): string | null {
   }
 }
 
-// URL final do redirecionamento, com as UTMs do link aplicadas
-export function buildDestination(link: Pick<Link, "url" | (typeof UTM_FIELDS)[number]>): string {
+// URL final do redirecionamento, com as UTMs do link aplicadas.
+// Parâmetros que chegam no link curto (fbclid, gclid, parâmetros de anúncio) são repassados,
+// exceto quando o destino ou as UTMs do link já definem o mesmo parâmetro.
+export function buildDestination(
+  link: Pick<Link, "url" | (typeof UTM_FIELDS)[number]>,
+  incoming?: URLSearchParams,
+): string {
   const url = new URL(link.url);
   for (const field of UTM_FIELDS) {
     const value = link[field];
     if (value) url.searchParams.set(field, value);
   }
+  incoming?.forEach((value, key) => {
+    if (!url.searchParams.has(key)) url.searchParams.append(key, value);
+  });
   return url.toString();
 }
 
