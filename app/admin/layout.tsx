@@ -9,6 +9,7 @@ export default function AdminLayout({ children }: LayoutProps<"/admin">) {
           <NextLink href="/admin" className="brand">
             Encurtador <strong>Proparts</strong>
           </NextLink>
+          <NextLink href="/admin/dashboard">Dashboard</NextLink>
           <NextLink href="/admin">Links</NextLink>
           <NextLink href="/admin/campanhas">Campanhas</NextLink>
         </nav>

@@ -15,6 +15,20 @@ export type CampaignStats = ClickStats & {
   by_day_link: { day: string; slug: string; count: number }[];
 };
 
+export type DashboardStats = {
+  total: number;
+  previous: number;
+  bots: number;
+  active_links: number;
+  links_with_clicks: number;
+  campaigns_with_clicks: number;
+  by_day: Bucket[];
+  by_campaign: Bucket[];
+  by_referrer: Bucket[];
+  by_device: Bucket[];
+  top_links: { id: number; slug: string; title: string | null; campaign: string | null; count: number }[];
+};
+
 export const PERIOD_OPTIONS = [7, 30, 90] as const;
 
 export function parsePeriod(value: unknown): number {

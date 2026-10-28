@@ -10,6 +10,7 @@ Stack: Next.js 16 (Vercel) + Supabase (Postgres).
 - Agrupa links por campanha, com busca e filtro
 - Ativa, desativa, edita e exclui links
 - Conta cliques por dia, país, dispositivo e site de origem (últimos 30 dias)
+- Dashboard geral com gráfico de cliques por dia, comparação com o período anterior e rankings de campanhas, origens, dispositivos e links
 - Relatório por campanha (7, 30 ou 90 dias) com ranking de links e exportação CSV para Excel
 - Repassa fbclid, gclid e parâmetros de anúncio para o destino
 - Ignora robôs e pré-visualizações (WhatsApp, redes sociais) na contagem
