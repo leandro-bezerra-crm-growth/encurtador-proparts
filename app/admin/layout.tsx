@@ -1,25 +1,15 @@
-import NextLink from "next/link";
-import { logout } from "../login/actions";
+import { MENU_CHECKBOX_ID, Sidebar } from "./sidebar";
 
 export default function AdminLayout({ children }: LayoutProps<"/admin">) {
   return (
     <>
-      <header className="topbar">
-        <nav className="nav">
-          <NextLink href="/admin" className="brand">
-            Encurtador <strong>Proparts</strong>
-          </NextLink>
-          <NextLink href="/admin/dashboard">Dashboard</NextLink>
-          <NextLink href="/admin">Links</NextLink>
-          <NextLink href="/admin/campanhas">Campanhas</NextLink>
-        </nav>
-        <form action={logout}>
-          <button type="submit" className="small secondary">
-            Sair
-          </button>
-        </form>
-      </header>
-      <main className="container">{children}</main>
+      {/* Controla o menu lateral no celular (sem JavaScript) */}
+      <input type="checkbox" id={MENU_CHECKBOX_ID} className="menu-check sr-only" aria-hidden="true" tabIndex={-1} />
+      <div className="shell">
+        <Sidebar />
+        <label htmlFor={MENU_CHECKBOX_ID} className="backdrop" aria-hidden="true" />
+        <div className="content">{children}</div>
+      </div>
     </>
   );
 }

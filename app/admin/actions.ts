@@ -46,7 +46,7 @@ export async function createLink(_prev: LinkFormState, formData: FormData): Prom
     const slug = parsed.slug ?? generateSlug();
     const { error } = await db().from("links").insert({ slug, ...parsed.fields });
     if (!error) {
-      revalidatePath("/admin");
+      revalidatePath("/admin", "layout");
       return { ok: `Link criado: /${slug}` };
     }
     if (error.code !== UNIQUE_VIOLATION) return { error: `Erro ao salvar: ${error.message}` };
@@ -67,7 +67,7 @@ export async function updateLink(id: number, _prev: LinkFormState, formData: For
   if (error) {
     return { error: error.code === UNIQUE_VIOLATION ? "Esse código já está em uso. Escolha outro." : `Erro ao salvar: ${error.message}` };
   }
-  revalidatePath("/admin");
+  revalidatePath("/admin", "layout");
   revalidatePath(`/admin/links/${id}`);
   return { ok: "Alterações salvas." };
 }
@@ -76,7 +76,7 @@ export async function setLinkActive(id: number, active: boolean): Promise<void> 
   await requireSession();
   const { error } = await db().from("links").update({ active, updated_at: new Date().toISOString() }).eq("id", id);
   if (error) throw new Error(error.message);
-  revalidatePath("/admin");
+  revalidatePath("/admin", "layout");
   revalidatePath(`/admin/links/${id}`);
 }
 
@@ -84,6 +84,6 @@ export async function deleteLink(id: number): Promise<void> {
   await requireSession();
   const { error } = await db().from("links").delete().eq("id", id);
   if (error) throw new Error(error.message);
-  revalidatePath("/admin");
-  redirect("/admin");
+  revalidatePath("/admin", "layout");
+  redirect("/admin/links");
 }

@@ -84,7 +84,10 @@ Abra http://localhost:3000.
 |---|---|
 | `app/[slug]/route.ts` | Redirecionamento público e registro de cliques |
 | `app/login/` | Tela e ações de login/logout |
-| `app/admin/` | Painel: lista, criação, edição, estatísticas |
+| `app/admin/page.tsx` | Visão geral (dashboard com gráficos) |
+| `app/admin/links/` | Meus links: criação, lista, detalhes e edição |
+| `app/admin/campanhas/` | Campanhas: cards, relatório por período e CSV |
+| `app/admin/sidebar.tsx`, `ui.tsx` | Layout (menu lateral, cabeçalho) no padrão visual Proparts |
 | `proxy.ts` | Bloqueia `/admin` sem sessão válida |
 | `lib/session.ts` | Senha única e cookie de sessão assinado |
 | `lib/links.ts` | Validação, geração de código e montagem das UTMs |

@@ -23,6 +23,8 @@ export type DashboardStats = {
   links_with_clicks: number;
   campaigns_with_clicks: number;
   by_day: Bucket[];
+  // Só existe depois da migração 004; até lá o gráfico mostra apenas o período atual
+  prev_by_day?: number[];
   by_campaign: Bucket[];
   by_referrer: Bucket[];
   by_device: Bucket[];
@@ -34,6 +36,11 @@ export const PERIOD_OPTIONS = [7, 30, 90] as const;
 export function parsePeriod(value: unknown): number {
   const days = Number(value);
   return (PERIOD_OPTIONS as readonly number[]).includes(days) ? days : 30;
+}
+
+// Início do período (agora menos N dias), em ISO, para filtros no banco
+export function periodStartIso(days: number): string {
+  return new Date(Date.now() - days * 864e5).toISOString();
 }
 
 // O nome da campanha chega na rota ainda codificado ("Black%20Friday")
